@@ -8,6 +8,8 @@ import EcoSystem from "@/src/components/Ecosystem";
 import SignupEco from "@/src/components/signup";
 import Wallet from "@/src/components/wallet";
 import Footer from "@/src/components/foooter";
+import SectionSwitch from "@/src/components/framerMotion";
+import ThemeToggle from "@/src/components/theme";
 export default function Home() {
   return (
     <div>
@@ -19,6 +21,8 @@ export default function Home() {
         <SignupEco/>
         <Wallet/>
         <Footer/>
+        <SectionSwitch/>
+        <ThemeToggle/>
     </div>
   );
 }
