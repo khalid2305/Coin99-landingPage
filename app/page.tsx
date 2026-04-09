@@ -1,6 +1,7 @@
+"use client";
+
 import Navbar from "@/src/components/navbar";
 import Image from "next/image";
-import hero from "@/src/components/hero";
 import Hero from "@/src/components/hero";
 import HeroSection from "@/src/components/heroSection";
 import CoinPage from "@/src/components/coinsPage";
@@ -9,7 +10,9 @@ import SignupEco from "@/src/components/signup";
 import Wallet from "@/src/components/wallet";
 import Footer from "@/src/components/foooter";
 import SectionSwitch from "@/src/components/framerMotion";
-import ThemeToggle from "@/src/components/theme";
+import FundMe from "@/src/components/EcoSystem/fundme";
+import SimpleMarquee from "@/src/components/marquee";
+
 export default function Home() {
   return (
     <div>
@@ -22,7 +25,8 @@ export default function Home() {
         <Wallet/>
         <Footer/>
         <SectionSwitch/>
-        <ThemeToggle/>
+        <FundMe/>
+        <SimpleMarquee/>
     </div>
   );
 }

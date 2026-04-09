@@ -1,0 +1,80 @@
+﻿Γû▓ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 4.0s
+  Running TypeScript ...
+  Finished TypeScript in 3.7s ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+node.exe : The width(-1) 
+and height(-1) of chart 
+should be greater than 0,
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (T  
+  he width(-1) a...grea   
+ ter than 0,:String) [    
+], RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+       please check the 
+style of container, or 
+the props width(100%) and 
+height(100%),
+       or add a 
+minWidth(0) or 
+minHeight(undefined) or 
+use aspect(undefined) to 
+control the
+       height and width.
+Error occurred 
+prerendering page "/". 
+Read more: https://nextjs.
+org/docs/messages/prerende
+r-error
+Error: Attempted to call 
+createMotionComponent() 
+from the server but 
+createMotionComponent is 
+on the client. It's not 
+possible to invoke a 
+client function from the 
+server, it can only be 
+rendered as a Component 
+or passed to props of a 
+Client Component.
+    at <unknown> (C:\Users
+\get2k\OneDrive\Documents\
+coin99 landing page\landin
+g-page\my-app\.next\server
+\chunks\ssr\_0zijb36._.js:
+1:2529)
+    at Object.get (C:\User
+s\get2k\OneDrive\Documents
+\coin99 landing page\landi
+ng-page\my-app\.next\serve
+r\chunks\ssr\_0zijb36._.js
+:1:112125)
+    at fe (C:\Users\get2k\
+OneDrive\Documents\coin99 
+landing page\landing-page\
+my-app\.next\server\chunks
+\ssr\_0zijb36._.js:1:12078
+8) {
+  digest: '1741582435'
+}
+Export encountered an 
+error on /page: /, 
+exiting the build.
+Γ¿» Next.js build worker 
+exited with code: 1 and 
+signal: null
