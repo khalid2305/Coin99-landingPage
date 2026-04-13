@@ -1,103 +1,81 @@
-"use client"; 
-import { useRef } from "react";
- 
-const coins = [
-  { name: "Tether", symbol: "USDT", price: "4,85,320", change: "+2.45%", bg: "bg-green-100", icon: "₮", iconColor: "text-green-600" },
-  { name: "Bitcoin", symbol: "BTC", price: "4,85,320", change: "+2.45%", bg: "bg-orange-100", icon: "₿", iconColor: "text-orange-500" },
-  { name: "BNB", symbol: "BNB", price: "4,85,320", change: "+2.45%", bg: "bg-yellow-100", icon: "B", iconColor: "text-yellow-600" },
-  { name: "Ethereum", symbol: "ETH", price: "4,85,320", change: "+2.45%", bg: "bg-blue-100", icon: "Ξ", iconColor: "text-blue-500" },
-  { name: "Cosmos", symbol: "ATOM", price: "4,85,320", change: "+2.45%", bg: "bg-purple-100", icon: "⚛", iconColor: "text-purple-500" },
-  { name: "Solana", symbol: "SOL", price: "4,85,320", change: "+2.45%", bg: "bg-indigo-100", icon: "◎", iconColor: "text-indigo-500" },
+"use client"
+const row1 = [
+  { name: "Solana", symbol: "SOL", price: "$4,85,320", change: "+2.45%" },
+  { name: "Tether", symbol: "USDT", price: "$4,85,320", change: "+2.45%" },
+  { name: "Bitcoin", symbol: "BTC", price: "$4,85,320", change: "+2.45%" },
+  { name: "BNB", symbol: "BNB", price: "$4,85,320", change: "+2.45%" },
+  { name: "Ethereum", symbol: "ETH", price: "$4,85,320", change: "+2.45%" },
+  { name: "Cosmos", symbol: "ATOM", price: "$4,85,320", change: "+2.45%" },
 ];
- 
+
 const row2 = [
-  { name: "Bitcoin", symbol: "BTC", price: "4,85,320", change: "+2.45%", bg: "bg-orange-100", icon: "₿", iconColor: "text-orange-500" },
-  { name: "Ethereum", symbol: "ETH", price: "4,85,320", change: "+2.45%", bg: "bg-blue-100", icon: "Ξ", iconColor: "text-blue-500" },
-  { name: "BNB", symbol: "BNB", price: "4,85,320", change: "+2.45%", bg: "bg-yellow-100", icon: "B", iconColor: "text-yellow-600" },
-  { name: "Cosmos", symbol: "ATOM", price: "4,85,320", change: "+2.45%", bg: "bg-purple-100", icon: "⚛", iconColor: "text-purple-500" },
-  { name: "Tether", symbol: "USDT", price: "4,85,320", change: "+2.45%", bg: "bg-green-100", icon: "₮", iconColor: "text-green-600" },
-  { name: "Solana", symbol: "SOL", price: "4,85,320", change: "+2.45%", bg: "bg-indigo-100", icon: "◎", iconColor: "text-indigo-500" },
+  { name: "Bitcoin", symbol: "BTC", price: "$4,85,320", change: "+2.45%" },
+  { name: "Ethereum", symbol: "ETH", price: "$4,85,320", change: "+2.45%" },
+  { name: "BNB", symbol: "BNB", price: "$4,85,320", change: "+2.45%" },
+  { name: "Cosmos", symbol: "ATOM", price: "$4,85,320", change: "+2.45%" },
+  { name: "Tether", symbol: "USDT", price: "$4,85,320", change: "+2.45%" },
+  { name: "Solana", symbol: "SOL", price: "$4,85,320", change: "+2.45%" },
 ];
- 
-interface Coin {
+type Token = {
   name: string;
   symbol: string;
   price: string;
   change: string;
-  bg: string;
-  icon: string;
-  iconColor: string;
-}
- 
-function CoinCard({ coin }: { coin: Coin }) {
-  return (
-    <div className="min-w-[250px] bg-gray-100 dark:bg-gray-800 border border-gray dark:border-gray-700 rounded-2xl p-1 shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer flex-shrink-0">
-      <div className="flex items-center gap-2 mb-3">
-        <div className={`w-8 h-8 rounded-full ${coin.bg} flex items-center justify-center`}>
-          <span className={`text-sm font-bold ${coin.iconColor}`}>{coin.icon}</span>
-        </div>
-        <div>
-          <p className="text-sm font-semibold text-gray-800 dark:text-gray-200 leading-tight ">{coin.name}
-            <span className="text-xs ml-2 text-gray-400">{coin.symbol}</span>
-          </p>
-        </div>
-      </div>
-      <hr className="bg-white dark:bg-gray-700 h-0.5" />
-      <div className=" flex  gap-23">
-      <p className="text-base font-bold text-gray-900 dark:text-white mb-1">${coin.price}</p>
-      <span className="inline-flex gap-1 text-xs font-medium text-green-600 bg-green-50 dark:bg-green-900/30 px-2 py-0.5 rounded-full">
-        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
-        {coin.change}
-      </span>
-      </div>
+};
 
+
+const TokenCard = ({ name, symbol, price, change }:Token) => {
+  return (
+    <div className="w-56 min-w-56 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-md hover:shadow-xl hover:scale-105 transition duration-300">
+      <div className="flex items-center gap-2">
+        <img
+          src={`/${name}.svg`}
+          alt={name}
+          className="w-6 h-6"
+        />
+        <h3 className="font-semibold capitalize text-black dark:text-white">
+          {name}
+        </h3>
+        <span className="text-sm text-gray-500">{symbol}</span>
+      </div>
+      <div className="my-2 border border-gray-200 dark:border-gray-700" />
+      <div className="flex items-center gap-2">
+        <span className="font-bold text-blue-500">{price}</span>
+        <div className="flex items-center justify-center w-[67px] h-[24px] border-1 rounded-2xl bg-[#E8FBF3]">
+            <span className="text-green-500 text-sm">{change}</span>
+        </div>  
+      </div>
     </div>
   );
-}
- 
-function ScrollRow({ coins }: { coins: Coin[] }) {
-  const rowRef = useRef<HTMLDivElement>(null);
- 
+};
+
+export default function TopPicksSection() {
   return (
-    <div
-      ref={rowRef}
-      className="flex gap-3 overflow-x-auto pb-1 scrollbar-hide"
-      style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-    >
-      {coins.map((coin, i) => (
-        <CoinCard key={i} coin={coin} />
-      ))}
-    </div>
-  );
-}
- 
-export default function TopCoinPicks() {
-  return (
-    <section className="bg-gradient-to-br from-slate-100 to-indigo-100 dark:from-gray-900 dark:to-indigo-950 px-4 py-14 text-center">
-     
-      <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white tracking-tight mb-3">
-        TOP{" "}
-        <span className="text-blue-600">COIN99</span>{" "}
-        PICKS
-      </h2>
- 
-     
-      <p className="text-sm text-gray-500 dark:text-gray-400 max-w-sm mx-auto mb-6 leading-relaxed">
-        Trade, invest, and manage cryptocurrency with institutional-grade security
-        and compliance. Access 200+ digital assets on India's most trusted platform.
-      </p>
- 
-    
-      <button className="bg-blue-600 hover:bg-blue-700 active:scale-95 transition-all duration-150 text-white text-sm font-semibold px-7 py-2.5 rounded-lg mb-8 shadow-md">
-        Explore Now
-      </button>
- 
-      <div className="flex flex-col gap-4 max-w-5xl mx-auto">
-        <ScrollRow coins={coins} />
-        <ScrollRow coins={row2} />
+    <section className="w-full py-14 bg-gray-100 dark:bg-black flex flex-col items-center">
+      <div className="text-center px-4 max-w-xl">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black dark:text-white">
+          TOP COIN <span className="text-blue-500">99</span> PICKS
+        </h2>
+        <p className="mt-3 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
+          Trade, invest, and manage cryptocurrency easily with secure access.
+        </p>
+        <button className="mt-5 px-6 py-2 rounded-lg bg-blue-500 text-white font-semibold hover:bg-blue-600 transition">
+          Explore Now
+        </button>
+      </div>
+      <div className="w-full overflow-hidden mt-12 space-y-6">
+        <div className="flex gap-4 animate-marquee">
+          {[...row1, ...row1, ...row1].map((token, i) => (
+            <TokenCard key={`r1-${i}`} {...token} />
+          ))}
+        </div>
+        <div className="flex gap-4 animate-marquee-reverse">
+          {[...row2, ...row2, ...row2].map((token, i) => (
+            <TokenCard key={`r2-${i}`} {...token} />
+          ))}
+        </div>
       </div>
     </section>
   );
 }
+

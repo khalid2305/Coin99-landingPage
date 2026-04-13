@@ -1,5 +1,5 @@
 "use client";
- 
+
 import { useState } from "react";
 import {
   LineChart,
@@ -9,7 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
- 
+
 const accordionItems = [
   {
     title: "C99 TOKEN",
@@ -22,7 +22,7 @@ const accordionItems = [
   { title: "PAY 99", content: "Send, receive and pay with crypto instantly using Pay99." },
   { title: "BLOCKCHAIN 99", content: "Build and deploy on the Coin99 blockchain infrastructure." },
 ];
- 
+
 const chartData = [
   { day: "Mon 15", value: 3000 },
   { day: "Tue 16", value: 4500 },
@@ -32,33 +32,33 @@ const chartData = [
   { day: "Sat 20", value: 9000 },
   { day: "Sun 21", value: 12000 },
 ];
- 
+
 export default function Ecosystem() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
- 
+
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
- 
+
   return (
     <section className="bg-white dark:bg-gray-950 px-6 py-16 md:px-16 transition-colors duration-300">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
- 
-      
+
+
         <div>
- 
+
           <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white leading-tight mb-4">
             EXPLORE THE{" "}
             <span className="text-blue-600">COIN99</span>{" "}
             ECOSYSTEM
           </h2>
- 
-    
+
+
           <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-8 max-w-sm">
             Discover a complete suite of tools designed to help you create tokens,
             launch projects, trade assets, accept payments, and build on blockchain
             — all within the Coin99 ecosystem.
           </p>
- 
-        
+
+
           <div className="flex flex-col divide-y divide-gray-100 dark:divide-gray-800 border-t border-gray-100 dark:border-gray-800">
             {accordionItems.map((item, i) => (
               <div key={i}>
@@ -82,30 +82,30 @@ export default function Ecosystem() {
             ))}
           </div>
         </div>
- 
-       
+
+
         <div className="flex justify-center">
           <div className="bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl shadow-lg p-5 w-full max-w-sm">
- 
-      
+
+
             <p className="text-center text-xs font-semibold text-gray-400 tracking-widest mb-4">
               COIN99
             </p>
- 
-   
+
+
             <div className="flex items-center gap-2 mb-1">
               <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">Coin99</span>
               <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs px-2 py-0.5 rounded-full font-medium">C99</span>
               <span className="bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 text-xs px-2 py-0.5 rounded-full font-medium">₮</span>
             </div>
- 
+
             <p className="text-3xl font-extrabold text-gray-900 dark:text-white mb-1">$9.99</p>
             <p className="text-xs text-green-500 font-medium mb-4">↑ 2.5% in 24 Hours</p>
- 
-          
+
+
             <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2">Trading Schedule</p>
- 
-   
+
+
             <div className="h-40 mb-4">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={chartData}>
@@ -138,8 +138,8 @@ export default function Ecosystem() {
                 </LineChart>
               </ResponsiveContainer>
             </div>
- 
-     
+
+
             <div className="border-t border-gray-100 dark:border-gray-800 pt-4">
               <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-3">Details</p>
               <div className="grid grid-cols-2 gap-4">
@@ -161,9 +161,9 @@ export default function Ecosystem() {
             </div>
           </div>
         </div>
- 
+
       </div>
-      
+
     </section>
   );
 }

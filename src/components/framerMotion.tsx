@@ -27,16 +27,15 @@ export default function SectionSwitch() {
 
   return (
     <div className="grid grid-cols-2 gap-10 p-10 bg-white dark:bg-gray-950 transition-colors duration-300">
-      
-      
+
+
       <div className="space-y-4">
         {data.map((item, index) => (
           <div
             key={index}
             onClick={() => setActive(index)}
-            className={`cursor-pointer border-b dark:border-gray-800 pb-2 transition-all ${
-              active === index ? "text-blue-600 font-bold" : "text-gray-500 dark:text-gray-400"
-            }`}
+            className={`cursor-pointer border-b dark:border-gray-800 pb-2 transition-all ${active === index ? "text-blue-600 font-bold" : "text-gray-500 dark:text-gray-400"
+              }`}
           >
             {item.title}
           </div>
@@ -44,10 +43,10 @@ export default function SectionSwitch() {
       </div>
 
 
-   
+
       <div className="flex items-center justify-center">
         <AnimatePresence mode="wait">
-          
+
           <motion.div
             key={active}
             initial={{ opacity: 0.5, x: 0 }}

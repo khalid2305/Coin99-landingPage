@@ -35,8 +35,8 @@ export default function FundMe() {
       {/* timer */}
       <div className="flex justify-between">
         <div className="flex flex-col gap-10">
-            <p>Until Finish</p>
-            <p className="text-black  text-bold text-2xl">1D : 23H : 24M : 41S</p>
+          <p>Until Finish</p>
+          <p className="text-black  text-bold text-2xl">1D : 23H : 24M : 41S</p>
         </div>
         <button>Participate</button>
       </div>

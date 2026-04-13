@@ -1,32 +1,34 @@
 "use client";
 
 import Navbar from "@/src/components/navbar";
-import Image from "next/image";
 import Hero from "@/src/components/hero";
 import HeroSection from "@/src/components/heroSection";
-import CoinPage from "@/src/components/coinsPage";
 import EcoSystem from "@/src/components/Ecosystem";
 import SignupEco from "@/src/components/signup";
 import Wallet from "@/src/components/wallet";
 import Footer from "@/src/components/foooter";
-import SectionSwitch from "@/src/components/framerMotion";
-import FundMe from "@/src/components/EcoSystem/fundme";
-import SimpleMarquee from "@/src/components/marquee";
+import TopPicksSection from "@/src/components/coinsPage";
+import { Sidebar } from "lucide-react";
+import Heros from "@/src/components/heros";
+
 
 export default function Home() {
   return (
     <div>
         <Navbar/>
+        <Heros/>
         <Hero/>
         <HeroSection/>
-        <CoinPage/>
+        <TopPicksSection
+    />
         <EcoSystem/>
         <SignupEco/>
         <Wallet/>
         <Footer/>
-        <SectionSwitch/>
+        <Sidebar/>
+        {/* <SectionSwitch/>
         <FundMe/>
-        <SimpleMarquee/>
+        <SimpleMarquee/> */}
     </div>
   );
 }
