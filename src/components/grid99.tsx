@@ -75,7 +75,7 @@ const Nine = ({ activeRow }: { activeRow: number }) => {
               scale: rowIndex === activeRow ? 1.1 : 1,
             }}
             transition={{ duration: 0.1 }}
-            className="w-[18px] h-[18px] rounded-[1.5px]"
+            className="w-[12px] h-[12px] rounded-[1px]"
           />
         ))
       )}
@@ -93,7 +93,7 @@ const Grid99 = ({ className = "" }: { className?: string }) => {
   }, []);
   return (
     <div
-      className={`flex gap-8 select-none pointer-events-none transition-all duration-500 ${className}`}
+      className={`flex gap-5 select-none pointer-events-none transition-all duration-500 ${className}`}
     >
       <Nine activeRow={activeRow} />
       <Nine activeRow={activeRow} />

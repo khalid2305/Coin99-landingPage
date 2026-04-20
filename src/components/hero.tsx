@@ -14,7 +14,7 @@ interface HeroCardsProps {
   onCardChange?: (contentType: contentType) => void;
 }
 
-const cardData = {
+export const cardData = {
   1: {
     title: "C99 TOKEN",
     description: "Create and manage your own digital assets effortlessly",
@@ -150,10 +150,7 @@ export default function HeroCards({ onCardChange }: HeroCardsProps) {
   const [nextId, setNextId] = useState(7);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const visibleCards = useMemo(
-    () => cards.slice(0, VISIBLE_CARDS),
-    [cards]
-  );
+  const visibleCards = useMemo(() => cards.slice(0, VISIBLE_CARDS), [cards]);
 
   const handleAnimate = () => {
     if (isAnimating) return;
@@ -163,20 +160,15 @@ export default function HeroCards({ onCardChange }: HeroCardsProps) {
     const nextContentType = ((cards[cards.length - 1].contentType % 6) +
       1) as contentType;
 
-    setCards((prevCards) => {
-      const updated = [
-        ...prevCards.slice(1),
-        { id: nextId, contentType: nextContentType },
-      ];
+    const nextCards = [
+      ...cards.slice(1),
+      { id: nextId, contentType: nextContentType },
+    ];
 
-      // ✅ FIXED (correct state usage)
-      onCardChange?.(updated[0].contentType);
-
-      return updated;
-    });
+    setCards(nextCards);
+    onCardChange?.(nextCards[0].contentType);
 
     setNextId((prev) => prev + 1);
-
     setTimeout(() => setIsAnimating(false), 1000);
   };
 
@@ -191,7 +183,7 @@ export default function HeroCards({ onCardChange }: HeroCardsProps) {
   }, [isAnimating]);
 
   return (
-    <div className="flex w-full flex-col items-center justify-center pt-2">
+    <div className="flex w-full flex-col items-center  pt-2 md:h-[500px] max-sm:h-[560px]">
       <div className="relative h-[340px] w-full max-w-[640px] overflow-hidden">
         <AnimatePresence initial={false}>
           {visibleCards.map((card, index) => (

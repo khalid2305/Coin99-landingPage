@@ -9,7 +9,7 @@ const row1 = [
 ];
 
 const row2 = [
-  { name: "Bitcoin", symbol: "BTC", price: "$4,85,320", change: "+2.45%" },
+  { name: "Bitcoin", symbol: "BTC", price: "$4,85,320", change: "+2.45%"  },
   { name: "Ethereum", symbol: "ETH", price: "$4,85,320", change: "+2.45%" },
   { name: "BNB", symbol: "BNB", price: "$4,85,320", change: "+2.45%" },
   { name: "Cosmos", symbol: "ATOM", price: "$4,85,320", change: "+2.45%" },
