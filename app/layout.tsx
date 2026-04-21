@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { CookieBanner } from "@/components/CookieBanner";
 import { BrandingProvider } from "@/src/components/brandingContext";
 
 const geistSans = Geist({
@@ -36,6 +37,7 @@ export default function RootLayout({
           <BrandingProvider>
             {children}
             <ThemeToggle />
+            <CookieBanner />
           </BrandingProvider>
         </ThemeProvider>
       </body>

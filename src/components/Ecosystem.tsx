@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import {
   BarChart,
   Bar,
@@ -206,59 +207,66 @@ export default function Ecosystem() {
 
         {/* ── LEFT: accordion ── */}
         <div>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white leading-tight mb-4">
-            EXPLORE THE{" "}
-            <span className="text-blue-600">COIN99</span>{" "}
-            ECOSYSTEM
+          <h2 className="text-[32px] md:text-[42px] font-extrabold text-black dark:text-white leading-[1.1] mb-5 tracking-tight">
+            Explore the Coin99 <br /> ecosystem
           </h2>
 
-          <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-8 max-w-sm">
+          <p className="text-[17px] text-gray-600 dark:text-gray-400 leading-[1.6] mb-8 max-w-[480px]">
             Discover a complete suite of tools designed to help you create
             tokens, launch projects, trade assets, accept payments, and build on
-            blockchain — all within the Coin99 ecosystem.
+            blockchain. All within the Coin99 ecosystem.
           </p>
 
-          <div className="flex flex-col divide-y divide-gray-100 dark:divide-gray-800 border-t border-gray-100 dark:border-gray-800">
-            {accordionItems.map((item, i) => (
+          <div className="flex flex-col gap-1">
+            {accordionItems.map((item, i) => {
+              const isActive = openIndex === i;
+              return (
               <div key={i}>
                 <button
                   onClick={() => toggle(i)}
-                  className="w-full flex justify-between items-center py-4 text-left group"
+                  className="w-full flex justify-between items-center py-[14px] text-left group"
                 >
-                  <span
-                    className={`text-sm font-bold tracking-wide transition-colors duration-200 ${
-                      openIndex === i
-                        ? "text-blue-600"
-                        : "text-gray-800 dark:text-gray-200 group-hover:text-blue-500"
-                    }`}
+                  <div className="flex items-center gap-4">
+                    <div className={`w-[12px] h-[12px] rounded-full flex-shrink-0 transition-colors ${isActive ? 'bg-[#2563EB]' : 'border-[2px] border-gray-300 dark:border-gray-600 group-hover:border-gray-400'}`} />
+                    <span
+                      className={`text-[13px] font-bold tracking-[0.1em] uppercase transition-colors duration-200 ${
+                        isActive
+                          ? "text-black dark:text-white"
+                          : "text-gray-500 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-300"
+                      }`}
+                    >
+                      {item.title}
+                    </span>
+                  </div>
+                  <motion.div
+                    animate={{ rotate: isActive ? 180 : 0 }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    className="text-gray-400"
                   >
-                    {item.title}
-                  </span>
-                  <motion.span
-                    animate={{ rotate: openIndex === i ? 180 : 0 }}
-                    transition={{ duration: 0.25, ease: "easeInOut" as const }}
-                    className="text-gray-400 text-lg leading-none"
-                  >
-                    ⌄
-                  </motion.span>
+                    <ChevronDown className="w-4 h-4" />
+                  </motion.div>
                 </button>
 
                 <AnimatePresence initial={false}>
-                  {openIndex === i && (
-                    <motion.p
+                  {isActive && (
+                    <motion.div
                       key="content"
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden text-sm text-gray-500 dark:text-gray-400 pb-4 leading-relaxed"
+                      className="overflow-hidden"
                     >
-                      {item.content}
-                    </motion.p>
+                      <div className="pl-[28px] pr-4 pb-[20px] pt-[4px]">
+                        <p className="text-[14px] text-gray-600 dark:text-gray-400 leading-[1.6]">
+                          {item.content}
+                        </p>
+                      </div>
+                    </motion.div>
                   )}
                 </AnimatePresence>
               </div>
-            ))}
+            )})}
           </div>
         </div>
 

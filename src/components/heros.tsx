@@ -2,7 +2,7 @@
 
 export default function Heros() {
   return (
-    <div className="flex flex-col items-center justify-center gap-6 bg-white dark:bg-gray-900 text-black dark:text-white border-none max-sm:h-[500px] pt-32 sm:pt-20 md:pt-28 pb-20 sm:pb-10 md:pb-16 px-4 text-center">
+    <div className="flex flex-col items-center justify-center mt-0 gap-6 bg-white dark:bg-gray-900 text-black dark:text-white border-none max-sm:h-[500px] pt-32 sm:pt-20 md:pt-28 pb-20 sm:pb-10 md:pb-16 px-4 text-center">
       
       <div className="font-extrabold text-black dark:text-white mx-auto z-10 px-4">
         <h1 className="text-[28px] sm:text-[36px] md:text-[46px] lg:text-[46px] xl:text-[62px] leading-[1.15] uppercase tracking-tight">

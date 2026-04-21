@@ -127,7 +127,14 @@ export default function Footer() {
           <a href="" className="md:text-sm">
             Terms of service
           </a>
-          <a href="" className="md:text-sm">
+          <a 
+            href="#" 
+            onClick={(e) => { 
+              e.preventDefault(); 
+              window.dispatchEvent(new Event('openCookieBanner')); 
+            }} 
+            className="md:text-sm cursor-pointer"
+          >
             Cookie Settings
           </a>
         </div>

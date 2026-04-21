@@ -1,6 +1,6 @@
 "use client";
-import { Search, Bell, Menu } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Search, Bell, Menu, X, ChevronDown, Globe } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import { AuthModal } from "./AuthModal";
 import { useBranding } from "./brandingContext";
 
@@ -10,6 +10,23 @@ export default function Navbar() {
 
   const [displayedTitle, setDisplayedTitle] = useState(activeCardTitle);
   const [animating, setAnimating] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Prevent focus if user is already typing in an input or textarea
+      if (
+        e.key === "/" &&
+        document.activeElement?.tagName !== "INPUT" &&
+        document.activeElement?.tagName !== "TEXTAREA"
+      ) {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   useEffect(() => {
     if (activeCardTitle === displayedTitle) return;
@@ -43,11 +60,11 @@ export default function Navbar() {
         }
       `}</style>
 
-      <div className="px-4 lg:px-6 py-4 bg-white dark:bg-gray-900 transition-colors duration-300">
+      <div className="px-4 lg:px-6 py-5 bg-white dark:bg-gray-900 transition-colors duration-300 sticky top-0 z-50">
         <div className="flex items-center justify-between relative w-full">
 
           {/* Logo */}
-          <div className="flex items-center gap-2 text-black dark:text-white z-10 shrink-0">
+          <div className="flex items-center justify-start gap-2 text-black dark:text-white z-10 shrink-0">
             <span className="text-xl font-bold whitespace-nowrap">
               COIN<span className="text-blue-600">99</span>
             </span>
@@ -67,28 +84,35 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Center nav */}
-          <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8 text-black dark:text-white">
-            <div className="hover:text-blue-600 cursor-pointer transition-colors">RESOURCE</div>
-            <div className="hover:text-blue-600 cursor-pointer transition-colors">ABOUT</div>
-          </div>
+          {/* Right Side: Links, Search, and Buttons grouped together */}
+          <div className="hidden lg:flex flex-1 items-center justify-end gap-5 z-10 pl-8">
+            {/* Nav Links */}
+            <div className="flex items-center gap-6 text-black dark:text-white text-[13px] tracking-wide font-bold mr-[6px]">
+              <div className="flex items-center gap-1 hover:text-blue-600 cursor-pointer transition-colors whitespace-nowrap">
+                RESOURCES <ChevronDown className="w-4 h-4 mt-[1px] opacity-70" strokeWidth={2.5} />
+              </div>
+              <div className="hover:text-blue-600 cursor-pointer transition-colors whitespace-nowrap">ABOUT</div>
+            </div>
 
-          {/* Right side */}
-          <div className="hidden lg:flex items-center gap-4 z-10 shrink-0">
-            <div className="flex items-center border border-gray-400 dark:border-gray-600 rounded-lg px-3 py-1 w-56 lg:w-60 xl:w-80 transition-colors">
-              <Search className="w-4 h-4 text-gray-500 mr-2 shrink-0" />
+            {/* Search Input - Stretches very wide */}
+            <div className="flex flex-1 max-w-[500px] xl:max-w-[700px] items-center bg-[#FAFAFA] dark:bg-gray-800 rounded-[10px] px-3 py-[7px] transition-colors border border-gray-200/60 dark:border-gray-700 hover:border-gray-300 shadow-[inset_0_1px_2px_rgba(0,0,0,0.01)]">
+              <Search className="w-[15px] h-[15px] text-[#94A3B8] dark:text-gray-500 mr-2 shrink-0" strokeWidth={2.5} />
               <input
+                ref={searchInputRef}
                 type="text"
                 placeholder="Search"
-                className="flex-1 outline-none bg-transparent placeholder-gray-400 dark:text-white min-w-0"
+                className="flex-1 outline-none bg-transparent placeholder-[#94A3B8] dark:text-white text-[13px] min-w-0"
               />
-              <div className="ml-2 px-2 py-1 text-sm border rounded-md text-gray-500 shrink-0">/</div>
+              <div className="ml-2 px-[7px] py-[2px] text-[11px] font-medium bg-[#F1F5F9] dark:bg-gray-700 rounded-md text-[#94A3B8] shrink-0 border border-transparent">/</div>
             </div>
-            <Bell className="w-5 h-5 text-gray-600 dark:text-gray-300 cursor-pointer shrink-0" />
-            <img src="./Framesvg.svg" className="w-5 h-5 cursor-pointer shrink-0" alt="globe" />
+
+            {/* Globe */}
+            <Globe className="w-5 h-5 text-[#64748B] dark:text-gray-400 cursor-pointer shrink-0 hover:text-gray-900 transition-colors" strokeWidth={1.5} />
+
+            {/* Sign Up Button */}
             <button
               onClick={() => openAuth("signup")}
-              className="border border-gray-400 dark:border-gray-600 px-4 py-2 rounded-md dark:text-white hover:bg-blue-600 hover:border-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:border-blue-600 transition-all duration-200 text-sm font-medium whitespace-nowrap"
+              className="border border-[#E2E8F0] dark:border-gray-700 bg-white dark:bg-gray-800 px-[14px] py-[6px] rounded-[8px] text-[#2563EB] hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-gray-700 transition-all duration-200 text-[13px] font-semibold whitespace-nowrap shadow-[0_1px_2px_rgba(0,0,0,0.05)]"
             >
               Sign Up
             </button>
@@ -103,37 +127,53 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile overlay sidebar */}
         {open && (
-          <div className="flex flex-col gap-4 mt-4 lg:hidden text-black dark:text-white">
-            <div className="hover:text-blue-600 cursor-pointer transition-colors">RESOURCE</div>
-            <div className="hover:text-blue-600 cursor-pointer transition-colors">ABOUT</div>
-            <div className="flex items-center border border-gray-400 dark:border-gray-600 rounded-lg px-3 py-2">
-              <Search className="w-4 h-4 text-gray-500 mr-2 shrink-0" />
-              <input
-                type="text"
-                placeholder="Search"
-                className="flex-1 outline-none bg-transparent dark:text-white min-w-0"
-              />
+          <div className="fixed inset-0 z-[100] bg-[#F7F8FA] dark:bg-zinc-950 flex flex-col h-full overflow-hidden animate-in fade-in slide-in-from-right-8 duration-300">
+            {/* Header */}
+            <div className="px-4 py-5 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 bg-[#F7F8FA] dark:bg-zinc-950">
+              <div className="text-[26px] font-bold text-black dark:text-white mt-1">
+                COIN<span className="text-[#2563EB]">99</span>
+              </div>
+              <X className="w-7 h-7 cursor-pointer text-black dark:text-white" onClick={() => setOpen(false)} strokeWidth={1.5} />
             </div>
-            <div className="flex items-center gap-4">
-              <Bell className="w-5 h-5" />
-              <img src="./Framesvg.svg" className="w-5 h-5" alt="globe" />
+
+            {/* Content */}
+            <div className="flex-1 overflow-y-auto px-6 py-8 flex flex-col pb-24 text-black dark:text-white">
+              <div className="flex flex-col gap-7 text-[18px]">
+                <div className="flex justify-between items-center cursor-pointer">
+                  <span>Products</span>
+                  <ChevronDown className="w-5 h-5" />
+                </div>
+                <div className="flex justify-between items-center cursor-pointer">
+                  <span>Trade</span>
+                  <ChevronDown className="w-5 h-5" />
+                </div>
+                <div className="flex justify-between items-center cursor-pointer">
+                  <span>Resources</span>
+                  <ChevronDown className="w-5 h-5" />
+                </div>
+                <div className="cursor-pointer">About</div>
+              </div>
+
+              <div className="w-full h-px bg-zinc-200 dark:bg-zinc-800 my-7"></div>
+
+              <div className="flex flex-col gap-7 text-[18px]">
+                <div className="flex justify-between items-center cursor-pointer">
+                  <span>English</span>
+                  <ChevronDown className="w-5 h-5" />
+                </div>
+                <div className="flex justify-between items-center cursor-pointer">
+                  <span>USD</span>
+                  <ChevronDown className="w-5 h-5" />
+                </div>
+              </div>
+
+              <div className="w-full h-px bg-zinc-200 dark:bg-zinc-800 my-7"></div>
+
+              <div className="cursor-pointer text-[18px]">Download the app</div>
             </div>
-            <div className="flex gap-3">
-              <button
-                onClick={() => openAuth("signin")}
-                className="flex-1 border border-gray-400 dark:border-gray-600 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-              >
-                Sign In
-              </button>
-              <button
-                onClick={() => openAuth("signup")}
-                className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors"
-              >
-                Sign Up
-              </button>
-            </div>
+
           </div>
         )}
       </div>

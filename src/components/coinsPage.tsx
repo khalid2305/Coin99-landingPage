@@ -1,30 +1,31 @@
 "use client"
 const row1 = [
-  { name: "Solana", symbol: "SOL", price: "$4,85,320", change: "+2.45%" },
-  { name: "Tether", symbol: "USDT", price: "$4,85,320", change: "+2.45%" },
-  { name: "Bitcoin", symbol: "BTC", price: "$4,85,320", change: "+2.45%" },
-  { name: "BNB", symbol: "BNB", price: "$4,85,320", change: "+2.45%" },
-  { name: "Ethereum", symbol: "ETH", price: "$4,85,320", change: "+2.45%" },
-  { name: "Cosmos", symbol: "ATOM", price: "$4,85,320", change: "+2.45%" },
+
+  { name: "Solana", symbol: "SOL", price: "$4,85,320", icon:"/icon.svg", change: "+2.45%" },
+  { name: "Tether", symbol: "USDT", price: "$4,85,320", icon:"/icon.svg",change: "+2.45%" },
+  { name: "Bitcoin", symbol: "BTC", price: "$4,85,320", icon:"/icon.svg",change: "+2.45%" },
+  { name: "BNB", symbol: "BNB", price: "$4,85,320", icon:"/icon.svg",change: "+2.45%" },
+  { name: "Ethereum", symbol: "ETH", price: "$4,85,320",icon:"/icon.svg" ,change: "+2.45%" },
+  { name: "Cosmos", symbol: "ATOM", price: "$4,85,320", icon:"/icon.svg",change: "+2.45%" },
 ];
 
 const row2 = [
-  { name: "Bitcoin", symbol: "BTC", price: "$4,85,320", change: "+2.45%"  },
-  { name: "Ethereum", symbol: "ETH", price: "$4,85,320", change: "+2.45%" },
-  { name: "BNB", symbol: "BNB", price: "$4,85,320", change: "+2.45%" },
-  { name: "Cosmos", symbol: "ATOM", price: "$4,85,320", change: "+2.45%" },
-  { name: "Tether", symbol: "USDT", price: "$4,85,320", change: "+2.45%" },
-  { name: "Solana", symbol: "SOL", price: "$4,85,320", change: "+2.45%" },
+  { name: "Bitcoin", symbol: "BTC", price: "$4,85,320",icon:"/icon.svg", change: "+2.45%"  },
+  { name: "Ethereum", symbol: "ETH", price: "$4,85,320",icon:"/icon.svg", change: "+2.45%" },
+  { name: "BNB", symbol: "BNB", price: "$4,85,320", icon:"/icon.svg",change: "+2.45%" },
+  { name: "Cosmos", symbol: "ATOM", price: "$4,85,320",icon:"/icon.svg", change: "+2.45%" },
+  { name: "Tether", symbol: "USDT", price: "$4,85,320", icon:"/icon.svg",change: "+2.45%" },
+  { name: "Solana", symbol: "SOL", price: "$4,85,320", icon:"/icon.svg",change: "+2.45%" },
 ];
 type Token = {
   name: string;
   symbol: string;
   price: string;
+  icon:string;
   change: string;
 };
 
-
-const TokenCard = ({ name, symbol, price, change }:Token) => {
+const TokenCard = ({ name, symbol, price, icon,change }:Token) => {
   return (
     <div className="w-56 min-w-56 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-md hover:shadow-xl hover:scale-105 transition duration-300">
       <div className="flex items-center gap-2">
@@ -41,9 +42,11 @@ const TokenCard = ({ name, symbol, price, change }:Token) => {
       <div className="my-2 border border-gray-200 dark:border-gray-700" />
       <div className="flex items-center gap-2">
         <span className="font-bold text-blue-500">{price}</span>
-        <div className="flex items-center justify-center w-[67px] h-[24px] border-1 rounded-2xl bg-[#E8FBF3]">
-            <span className="text-green-500 text-sm">{change}</span>
-        </div>  
+        <div className="flex justify-between w-[70px] h-[24px] border-1 rounded-2xl bg-[#E8FBF3]">
+            <h1 className="text-green-500 text-xs"> <img src={icon} alt="" />
+              {change}
+            </h1>
+        </div>
       </div>
     </div>
   );

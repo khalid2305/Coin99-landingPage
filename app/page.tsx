@@ -24,33 +24,26 @@ const cardTitles: Record<number, string> = {
 
 export default function Home() {
   const { setActiveCardTitle } = useBranding();
-
   return (
     <div className="overflow-x-hidden">
       <Navbar />
-
       <div className="relative bg-white dark:bg-gray-900">
     <Grid99 className="
       absolute z-0 pointer-events-none select-none opacity-60
-      left-1 top-100
+      left-1 top-40
       md:top-50 md:size-min
       sm:left-0 sm:top-[20%] 
-      lg:left-4 lg:top-[30%]
       max-sm:top-102
     " />
     <Grid99 className="
       absolute z-0 pointer-events-none select-none opacity-60
-      right-1 bottom-0
+      right-1 bottom-50
       sm:right-0 
-      lg:right-4 lg:bottom-[8%]
+   
     " />
-
-
         <Heros />
         <Hero onCardChange={(contentType) => setActiveCardTitle(cardTitles[contentType])} />
-
       </div> {/* ← this closing tag was missing before! */}
-
       <HeroSection />
       <TopPicksSection />
       <EcoSystem />
